@@ -16,6 +16,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - docker push public.ecr.aws/b5h0q0x6/demorepo:latest
+      - printf'[{"name":"mycontainer","imageUri":"public.ecr.aws/b5h0q0x6/demorepo:latest"}]' > imagedefinition.json
      
 artifacts:
   files:
