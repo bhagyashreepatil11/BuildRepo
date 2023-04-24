@@ -4,17 +4,21 @@ phases:
   pre_build:
     commands:
       - echo Nothing to do in the pre_build phase...
-            
+      - aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/b5h0q0x6     
   build:
     commands:
       - echo Build started on `date`
       - mvn clean install
+      - docker build -t demorepo .
+      - docker tag demorepo:latest public.ecr.aws/b5h0q0x6/demorepo:latest
                  
   post_build:
     commands:
       - echo Build completed on `date`
+      - docker push public.ecr.aws/b5h0q0x6/demorepo:latest
      
 artifacts:
   files:
     - 'target/*.war'
   discard-paths: yes
+
