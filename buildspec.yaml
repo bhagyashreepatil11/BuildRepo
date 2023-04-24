@@ -22,4 +22,5 @@ artifacts:
   files:
     - 'target/*.war'
   discard-paths: yes
+  - imagedefinition.json
 
